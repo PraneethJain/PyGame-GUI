@@ -26,19 +26,24 @@ class Button:
         self.rect_surf.set_alpha(100)
         self.hovering = False
         self.pressed = False
+        self.unpressed = False
 
     def hover(self) -> None:
         """Handles the mouse hovering over the button"""
         if self.rect.collidepoint(pg.mouse.get_pos()):
             self.hovering = True
+            self.unpressed = False
             screen.blit(self.rect_surf, self.rect.topleft)
             if any(pg.mouse.get_pressed()):
                 self.pressed = True
             else:
+                if self.pressed:
+                    self.unpressed = True
                 self.pressed = False
         else:
             self.hovering = False
             self.pressed = False
+            self.unpressed = False
 
     def draw(self) -> None:
         """Draws the text of the button"""
