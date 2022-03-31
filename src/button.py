@@ -1,0 +1,50 @@
+from settings import *
+
+
+class Button:
+    def __init__(
+        self,
+        text: str,
+        center: tuple[int, int] = (WIDTH // 2, HEIGHT // 2),
+        font: pg.font.Font = pg.font.Font("fonts/Roboto-Black.ttf", 32),
+        color="lightgray",
+    ) -> None:
+        """Initialize a new button
+
+        Args:
+            text : Text to show on button.
+            center : Coordinates of center of the button. Defaults to center of screen).
+            font : Font for the text on the button. Defaults to pg.font.Font("fonts/Roboto-Black.ttf", 32).
+            color : Color of the text on the button. Defaults to light gray.
+        """
+        self.text = text
+        self.font = font
+        self.image = self.font.render(self.text, True, color)
+        self.image_rect = self.image.get_rect(center=center)
+        self.rect = self.image.get_rect(center=center).inflate(25, 25)
+        self.rect_surf = pg.Surface((self.rect.w, self.rect.h))
+        self.rect_surf.set_alpha(100)
+        self.hovering = False
+        self.pressed = False
+
+    def hover(self) -> None:
+        """Handles the mouse hovering over the button"""
+        if self.rect.collidepoint(pg.mouse.get_pos()):
+            self.hovering = True
+            screen.blit(self.rect_surf, self.rect.topleft)
+            if any(pg.mouse.get_pressed()):
+                self.pressed = True
+            else:
+                self.pressed = False
+        else:
+            self.hovering = False
+            self.pressed = False
+
+    def draw(self) -> None:
+        """Draws the text of the button"""
+        screen.blit(self.image, self.image_rect.topleft)
+
+    def update(self) -> None:
+        """Update the button"""
+        self.hover()
+        self.draw()
