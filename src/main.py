@@ -8,10 +8,11 @@ def handle_events(events: list) -> None:
             pg.quit()
             sys.exit()
 
-
+button = Button("Play")
 while True:
     handle_events(pg.event.get())
 
     screen.fill("darkblue")
+    button.update()
 
     pg.display.flip()
