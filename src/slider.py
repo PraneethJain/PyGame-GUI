@@ -50,7 +50,7 @@ class Slider:
             self.font_color = font_color
 
         if self.show_value:
-            self.value_image = self.font.render(f"{self.value}", True, self.font_color)
+            self.value_image = self.font.render(f"{round(self.value)}", True, self.font_color)
             self.value_rect = self.value_image.get_rect(
                 midleft=(self.rect.right + 20, self.rect.centery)
             )
@@ -111,7 +111,7 @@ class Slider:
         self.filled_image.fill(self.filled_color)
         self.filled_rect = self.filled_image.get_rect(topleft=self.rect.topleft)
         if self.show_value:
-            self.value_image = self.font.render(f"{self.value}", True, self.font_color)
+            self.value_image = self.font.render(f"{round(self.value)}", True, self.font_color)
             self.value_rect = self.value_image.get_rect(
                 midleft=(self.rect.right + 20, self.rect.centery)
             )
