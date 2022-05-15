@@ -31,10 +31,12 @@ class Slider:
         self.max = max
         self.min = min
         self.range = self.max - self.min
-        if start_value:
-            self.value = start_value
-        else:
-            self.value = self.min
+        
+        self.start_value = start_value
+        if self.start_value is None:
+            self.start_value = self.min
+        self.value = self.start_value
+        
         self.filled_image = pg.Surface(
             ((self.value - self.min) * self.width / self.range, self.height)
         )
@@ -115,3 +117,6 @@ class Slider:
             self.value_rect = self.value_image.get_rect(
                 midleft=(self.rect.right + 20, self.rect.centery)
             )
+            
+    def reset(self):
+        self.set_value(self.start_value)
