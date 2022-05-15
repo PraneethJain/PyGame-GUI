@@ -61,9 +61,9 @@ class Window:
             self.reset_button.update()
 
             if self.reset_button.unpressed:
-                self.r_slider.set_value(0)
-                self.g_slider.set_value(0)
-                self.b_slider.set_value(0)
+                self.r_slider.reset()
+                self.g_slider.reset()
+                self.b_slider.reset()
 
             pg.display.update()
 
