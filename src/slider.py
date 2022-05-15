@@ -5,8 +5,9 @@ class Slider:
     def __init__(
         self,
         center=(WIDTH / 2, HEIGHT / 2),
+        min=0,
         max=100,
-        start_value = 0,
+        start_value=None,
         width=250,
         height=5,
         color=(255, 255, 255),
@@ -25,9 +26,14 @@ class Slider:
         self.image.fill(self.color)
         self.rect = self.image.get_rect(center=center)
         self.max = max
-        self.value = start_value
+        self.min = min
+        self.range = self.max - self.min
+        if start_value:
+            self.value = start_value
+        else:
+            self.value = self.min
         self.filled_image = pg.Surface(
-            (self.value * self.width / self.max, self.height)
+            ((self.value - self.min) * self.width / self.range, self.height)
         )
         self.filled_image.fill(self.filled_color)
         self.filled_rect = self.filled_image.get_rect(topleft=self.rect.topleft)
@@ -59,7 +65,10 @@ class Slider:
         pg.draw.circle(
             screen,
             self.filled_color,
-            (self.rect.left + self.value / self.max * self.width, self.rect.centery),
+            (
+                self.rect.left + (self.value - self.min) / self.range * self.width,
+                self.rect.centery,
+            ),
             8,
         )
         if self.show_value:
@@ -73,14 +82,14 @@ class Slider:
             if self.rect.collidepoint(x, y):
                 self.pressed = True
             if self.pressed:
-                self.value = (x - self.rect.left) * self.max / self.width
+                self.value = (x - self.rect.left) * self.range / self.width + self.min
                 if x > self.rect.right:
                     self.value = self.max
                 elif x < self.rect.left:
-                    self.value = 0
+                    self.value = self.min
 
             self.filled_image = pg.Surface(
-                (self.value * self.width / self.max, self.height)
+                ((self.value - self.min) * self.width / self.range, self.height)
             )
             self.filled_image.fill(self.filled_color)
             self.filled_rect = self.filled_image.get_rect(topleft=self.rect.topleft)
