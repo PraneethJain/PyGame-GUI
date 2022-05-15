@@ -38,6 +38,8 @@ class Window:
         self.g = 0
         self.b = 0
 
+        self.reset_button = Button("Reset", (187, 150))
+
     def run(self):
         while True:
             screen.fill((self.r, self.g, self.b))
@@ -55,6 +57,13 @@ class Window:
             self.r = self.r_slider.value
             self.g = self.g_slider.value
             self.b = self.b_slider.value
+
+            self.reset_button.update()
+
+            if self.reset_button.unpressed:
+                self.r_slider.set_value(0)
+                self.g_slider.set_value(0)
+                self.b_slider.set_value(0)
 
             pg.display.update()
 
