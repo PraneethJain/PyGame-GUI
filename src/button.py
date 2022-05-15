@@ -8,6 +8,7 @@ class Button:
         center: tuple[int, int] = (WIDTH // 2, HEIGHT // 2),
         font: pg.font.Font = pg.font.Font("fonts/Roboto-Black.ttf", 32),
         color="lightgray",
+        hover_background="black",
     ) -> None:
         """Initialize a new button
 
@@ -23,6 +24,7 @@ class Button:
         self.image_rect = self.image.get_rect(center=center)
         self.rect = self.image.get_rect(center=center).inflate(25, 25)
         self.rect_surf = pg.Surface((self.rect.w, self.rect.h))
+        self.rect_surf.fill(hover_background)
         self.rect_surf.set_alpha(100)
         self.hovering = False
         self.pressed = False
