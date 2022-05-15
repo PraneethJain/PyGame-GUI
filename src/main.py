@@ -7,7 +7,7 @@ from slider import Slider
 
 class Window:
     def __init__(self):
-        self.slider = Slider(max=500, color="red", filled_color="blue")
+        self.slider = Slider(max=500, color="red", filled_color="blue", show_value=True)
 
     def run(self):
         while True:
@@ -15,7 +15,6 @@ class Window:
             self.handle_events(pg.event.get())
 
             self.slider.update()
-            print(self.slider.value)
 
             pg.display.update()
 
