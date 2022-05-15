@@ -2,9 +2,9 @@ from settings import *
 
 
 class Slider:
-    
+
     busy = False
-    
+
     def __init__(
         self,
         center=(WIDTH / 2, HEIGHT / 2),
@@ -92,18 +92,7 @@ class Slider:
                 elif x < self.rect.left:
                     self.value = self.min
 
-            self.filled_image = pg.Surface(
-                ((self.value - self.min) * self.width / self.range, self.height)
-            )
-            self.filled_image.fill(self.filled_color)
-            self.filled_rect = self.filled_image.get_rect(topleft=self.rect.topleft)
-            if self.show_value:
-                self.value_image = self.font.render(
-                    f"{self.value}", True, self.font_color
-                )
-                self.value_rect = self.value_image.get_rect(
-                    midleft=(self.rect.right + 20, self.rect.centery)
-                )
+            self.set_value()
 
         else:
             self.pressed = False
@@ -113,17 +102,16 @@ class Slider:
         self.update_value()
         self.draw()
 
-    def set_value(self, value):
-        self.value = value
+    def set_value(self, value=None):
+        if value is not None:
+            self.value = value
         self.filled_image = pg.Surface(
             ((self.value - self.min) * self.width / self.range, self.height)
         )
         self.filled_image.fill(self.filled_color)
         self.filled_rect = self.filled_image.get_rect(topleft=self.rect.topleft)
         if self.show_value:
-            self.value_image = self.font.render(
-                f"{self.value}", True, self.font_color
-            )
+            self.value_image = self.font.render(f"{self.value}", True, self.font_color)
             self.value_rect = self.value_image.get_rect(
                 midleft=(self.rect.right + 20, self.rect.centery)
             )
