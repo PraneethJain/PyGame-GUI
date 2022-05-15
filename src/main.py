@@ -2,18 +2,20 @@ import sys
 from settings import *
 from button import Button
 from link import Link
+from slider import Slider
 
 
 class Window:
     def __init__(self):
-        self.link = Link("Open google", "www.google.com")
+        self.slider = Slider(max=500, color="red", filled_color="blue")
 
     def run(self):
         while True:
             screen.fill((0, 0, 0))
             self.handle_events(pg.event.get())
 
-            self.link.update()
+            self.slider.update()
+            print(self.slider.value)
 
             pg.display.update()
 
