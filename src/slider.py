@@ -112,3 +112,18 @@ class Slider:
     def update(self):
         self.update_value()
         self.draw()
+
+    def set_value(self, value):
+        self.value = value
+        self.filled_image = pg.Surface(
+            ((self.value - self.min) * self.width / self.range, self.height)
+        )
+        self.filled_image.fill(self.filled_color)
+        self.filled_rect = self.filled_image.get_rect(topleft=self.rect.topleft)
+        if self.show_value:
+            self.value_image = self.font.render(
+                f"{self.value}", True, self.font_color
+            )
+            self.value_rect = self.value_image.get_rect(
+                midleft=(self.rect.right + 20, self.rect.centery)
+            )
