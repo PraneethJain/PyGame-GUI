@@ -2,6 +2,9 @@ from settings import *
 
 
 class Slider:
+    
+    busy = False
+    
     def __init__(
         self,
         center=(WIDTH / 2, HEIGHT / 2),
@@ -79,7 +82,8 @@ class Slider:
     def update_value(self):
         x, y = pg.mouse.get_pos()
         if any(pg.mouse.get_pressed()):
-            if self.rect.collidepoint(x, y):
+            if self.rect.collidepoint(x, y) and not Slider.busy:
+                Slider.busy = True
                 self.pressed = True
             if self.pressed:
                 self.value = (x - self.rect.left) * self.range / self.width + self.min
@@ -103,6 +107,7 @@ class Slider:
 
         else:
             self.pressed = False
+            Slider.busy = False
 
     def update(self):
         self.update_value()
