@@ -6,6 +6,7 @@ class Slider:
         self,
         center=(WIDTH / 2, HEIGHT / 2),
         max=100,
+        start_value = 0,
         width=250,
         height=5,
         color=(255, 255, 255),
@@ -24,7 +25,7 @@ class Slider:
         self.image.fill(self.color)
         self.rect = self.image.get_rect(center=center)
         self.max = max
-        self.value = max
+        self.value = start_value
         self.filled_image = pg.Surface(
             (self.value * self.width / self.max, self.height)
         )
@@ -34,11 +35,11 @@ class Slider:
 
         self.show_value = show_value
         self.show_label = show_label
-        
+
         if self.show_label or self.show_value:
             self.font = font
             self.font_color = font_color
-            
+
         if self.show_value:
             self.value_image = self.font.render(f"{self.value}", True, self.font_color)
             self.value_rect = self.value_image.get_rect(
@@ -48,7 +49,9 @@ class Slider:
         if self.show_label:
             self.label_text = label_text
             self.label_image = self.font.render(self.label_text, True, self.font_color)
-            self.label_rect = self.label_image.get_rect(midright=(self.rect.left-20, self.rect.centery))
+            self.label_rect = self.label_image.get_rect(
+                midright=(self.rect.left - 20, self.rect.centery)
+            )
 
     def draw(self):
         screen.blit(self.image, self.rect.topleft)
