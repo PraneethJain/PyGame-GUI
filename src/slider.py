@@ -11,6 +11,8 @@ class Slider:
         color=(255, 255, 255),
         filled_color=(0, 128, 128),
         show_value=False,
+        show_label=False,
+        label_text: str = "Placeholder",
         font=pg.font.Font("fonts/Roboto-Black.ttf", 16),
         font_color=(255, 255, 255),
     ) -> None:
@@ -31,13 +33,22 @@ class Slider:
         self.pressed = False
 
         self.show_value = show_value
-        if self.show_value:
+        self.show_label = show_label
+        
+        if self.show_label or self.show_value:
             self.font = font
             self.font_color = font_color
+            
+        if self.show_value:
             self.value_image = self.font.render(f"{self.value}", True, self.font_color)
             self.value_rect = self.value_image.get_rect(
                 midleft=(self.rect.right + 20, self.rect.centery)
             )
+
+        if self.show_label:
+            self.label_text = label_text
+            self.label_image = self.font.render(self.label_text, True, self.font_color)
+            self.label_rect = self.label_image.get_rect(midright=(self.rect.left-20, self.rect.centery))
 
     def draw(self):
         screen.blit(self.image, self.rect.topleft)
@@ -50,6 +61,8 @@ class Slider:
         )
         if self.show_value:
             screen.blit(self.value_image, self.value_rect.topleft)
+        if self.show_label:
+            screen.blit(self.label_image, self.label_rect.topleft)
 
     def update_value(self):
         x, y = pg.mouse.get_pos()
