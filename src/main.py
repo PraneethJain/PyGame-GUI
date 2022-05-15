@@ -14,5 +14,4 @@ while True:
 
     screen.fill("darkblue")
     button.update()
-
     pg.display.flip()
