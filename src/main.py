@@ -1,17 +1,20 @@
 import sys
 from settings import *
 from button import Button
+from link import Link
 
 
 class Window:
     def __init__(self):
-        self.button = Button("Click me")
+        self.link = Link("Open google", "www.google.com")
 
     def run(self):
         while True:
-            screen.fill((0, 128, 128))
+            screen.fill((0, 0, 0))
             self.handle_events(pg.event.get())
-            self.button.update()
+
+            self.link.update()
+
             pg.display.update()
 
     def handle_events(self, events):
