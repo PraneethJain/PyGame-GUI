@@ -7,14 +7,55 @@ from slider import Slider
 
 class Window:
     def __init__(self):
-        self.slider = Slider(max=500, color="red", filled_color="blue", show_value=True)
+        self.r_slider = Slider(
+            center=(180, 30),
+            max=255,
+            color="white",
+            filled_color="red",
+            show_value=True,
+            show_label=True,
+            label_text="R",
+        )
+        self.g_slider = Slider(
+            center=(180, 60),
+            max=255,
+            color="white",
+            filled_color="green",
+            show_value=True,
+            show_label=True,
+            label_text="G",
+        )
+        self.b_slider = Slider(
+            center=(180, 90),
+            max=255,
+            color="white",
+            filled_color="blue",
+            show_value=True,
+            show_label=True,
+            label_text="B",
+        )
+        self.r = 0
+        self.g = 0
+        self.b = 0
 
     def run(self):
         while True:
-            screen.fill((0, 0, 0))
+            screen.fill((self.r, self.g, self.b))
             self.handle_events(pg.event.get())
 
-            self.slider.update()
+            # slider_bg_surf = pg.Surface((375, 100))
+            # screen.blit(slider_bg_surf, (5, 12))
+
+            pg.draw.rect(screen, "black", pg.Rect(5, 12, 375, 100), border_radius=5)
+            pg.draw.rect(screen, "white", pg.Rect(5, 12, 375, 100), width=2, border_radius = 5)
+
+            self.r_slider.update()
+            self.g_slider.update()
+            self.b_slider.update()
+
+            self.r = self.r_slider.value
+            self.g = self.g_slider.value
+            self.b = self.b_slider.value
 
             pg.display.update()
 
