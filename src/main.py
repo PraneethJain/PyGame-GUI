@@ -43,11 +43,10 @@ class Window:
             screen.fill((self.r, self.g, self.b))
             self.handle_events(pg.event.get())
 
-            # slider_bg_surf = pg.Surface((375, 100))
-            # screen.blit(slider_bg_surf, (5, 12))
-
             pg.draw.rect(screen, "black", pg.Rect(5, 12, 375, 100), border_radius=5)
-            pg.draw.rect(screen, "white", pg.Rect(5, 12, 375, 100), width=2, border_radius = 5)
+            pg.draw.rect(
+                screen, "white", pg.Rect(5, 12, 375, 100), width=2, border_radius=5
+            )
 
             self.r_slider.update()
             self.g_slider.update()
