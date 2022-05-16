@@ -11,7 +11,7 @@ class InputBox:
         font=pg.font.Font("fonts/Roboto-Black.ttf", 20),
         inactive_color="lightskyblue3",
         active_color="dodgerblue2",
-        cursor_color="white"
+        cursor_color="white",
     ):
         self.inactive_color = inactive_color
         self.active_color = active_color
@@ -21,13 +21,15 @@ class InputBox:
         self.font = font
         self.color = self.inactive_color
         self.text_image = self.font.render(text, True, self.color)
-        self.text_rect = self.text_image.get_rect(midleft = (self.rect.left+5, self.rect.centery))
+        self.text_rect = self.text_image.get_rect(
+            midleft=(self.rect.left + 5, self.rect.centery)
+        )
         self.active = False
         self.pressed = False
         self.counter = 0
-        self.cursor_image = pg.Surface((1,30))
+        self.cursor_image = pg.Surface((1, 30))
         self.cursor_image.fill(cursor_color)
-        self.cursor_rect = self.cursor_image.get_rect(center = self.text_rect.midright)
+        self.cursor_rect = self.cursor_image.get_rect(center=self.text_rect.midright)
 
     def handle_event(self, event):
         if event is not None and event.type == pg.MOUSEBUTTONDOWN:
@@ -54,16 +56,18 @@ class InputBox:
             #     self.counter += 1
             # else:
             #     self.counter = 0
-                
-            self.counter = self.counter+1 if self.pressed else 0
-                
-            if self.counter>100:
+
+            self.counter = self.counter + 1 if self.pressed else 0
+
+            if self.counter > 100:
                 self.text = self.text[:-1]
-                self.counter=80
+                self.counter = 80
 
             self.text_image = self.font.render(self.text, True, self.color)
-            self.text_rect = self.text_image.get_rect(topleft = self.text_rect.topleft)
-            self.cursor_rect = self.cursor_image.get_rect(center = self.text_rect.midright)
+            self.text_rect = self.text_image.get_rect(topleft=self.text_rect.topleft)
+            self.cursor_rect = self.cursor_image.get_rect(
+                center=self.text_rect.midright
+            )
 
     def draw(self):
         screen.blit(self.text_image, self.text_rect.topleft)

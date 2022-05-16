@@ -8,9 +8,9 @@ from input_box import InputBox
 
 class Window:
     def __init__(self):
-        
+
         self.input_box = InputBox()
-        
+
         self.r_slider = Slider(
             center=(180, 30),
             max=255,
@@ -50,7 +50,7 @@ class Window:
             self.handle_events(pg.event.get())
 
             self.input_box.update()
-            
+
             pg.draw.rect(screen, "black", pg.Rect(5, 12, 375, 100), border_radius=5)
             pg.draw.rect(
                 screen, "white", pg.Rect(5, 12, 375, 100), width=2, border_radius=5
@@ -74,12 +74,15 @@ class Window:
             pg.display.update()
 
     def handle_events(self, events):
-        for event in events:
-            if event.type == pg.QUIT:
-                pg.quit()
-                sys.exit()
-                
-            self.input_box.handle_event(event)
+        if events:
+            for event in events:
+                if event.type == pg.QUIT:
+                    pg.quit()
+                    sys.exit()
+
+                self.input_box.handle_event(event)
+        else:
+            self.input_box.handle_event(None)
 
 
 def main():
