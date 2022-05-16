@@ -11,6 +11,7 @@ class InputBox:
         font=pg.font.Font("fonts/Roboto-Black.ttf", 20),
         inactive_color="lightskyblue3",
         active_color="dodgerblue2",
+        cursor_color="white"
     ):
         self.inactive_color = inactive_color
         self.active_color = active_color
@@ -23,7 +24,7 @@ class InputBox:
         self.text_rect = self.text_image.get_rect(midleft = (self.rect.left+5, self.rect.centery))
         self.active = False
         self.cursor_image = pg.Surface((1,30))
-        self.cursor_image.fill((255, 255, 255))
+        self.cursor_image.fill(cursor_color)
         self.cursor_rect = self.cursor_image.get_rect(center = self.text_rect.midright)
 
     def handle_event(self, event):
@@ -50,7 +51,7 @@ class InputBox:
 
     def draw(self):
         screen.blit(self.text_image, self.text_rect.topleft)
-        pg.draw.rect(screen, self.color, self.rect, 2)
+        pg.draw.rect(screen, self.color, self.rect, width=2, border_radius=5)
         if self.active:
             screen.blit(self.cursor_image, self.cursor_rect.topleft)
 
