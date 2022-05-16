@@ -23,12 +23,14 @@ class InputBox:
         self.text_image = self.font.render(text, True, self.color)
         self.text_rect = self.text_image.get_rect(midleft = (self.rect.left+5, self.rect.centery))
         self.active = False
+        self.pressed = False
+        self.counter = 0
         self.cursor_image = pg.Surface((1,30))
         self.cursor_image.fill(cursor_color)
         self.cursor_rect = self.cursor_image.get_rect(center = self.text_rect.midright)
 
     def handle_event(self, event):
-        if any(pg.mouse.get_pressed()):
+        if event is not None and event.type == pg.MOUSEBUTTONDOWN:
             if self.rect.collidepoint(pg.mouse.get_pos()):
                 self.active = not self.active
 
@@ -36,14 +38,28 @@ class InputBox:
                 self.active = False
 
         self.color = self.active_color if self.active else self.inactive_color
-
-        if event.type == pg.KEYDOWN and self.active:
-            if event.key == pg.K_RETURN:
-                self.text = ""
-            elif event.key == pg.K_BACKSPACE:
+        if self.active:
+            if event is not None:
+                if event.type == pg.KEYDOWN:
+                    if event.key == pg.K_RETURN:
+                        self.text = ""
+                    elif event.key == pg.K_BACKSPACE:
+                        self.text = self.text[:-1]
+                        self.pressed = True
+                    else:
+                        self.text += event.unicode
+                if event.type == pg.KEYUP:
+                    self.pressed = False
+            # if self.pressed:
+            #     self.counter += 1
+            # else:
+            #     self.counter = 0
+                
+            self.counter = self.counter+1 if self.pressed else 0
+                
+            if self.counter>100:
                 self.text = self.text[:-1]
-            else:
-                self.text += event.unicode
+                self.counter=80
 
             self.text_image = self.font.render(self.text, True, self.color)
             self.text_rect = self.text_image.get_rect(topleft = self.text_rect.topleft)
