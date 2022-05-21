@@ -11,6 +11,11 @@ class Window:
     def __init__(self):
         
         self.menu = Menu()
+        self.menu.add_menu_item("Fourth thing")
+        
+        self.input_box = InputBox()
+        
+        self.link = Link("Open google", "www.google.com", center=(150, 600))
 
         self.r_slider = Slider(
             center=(180, 30),
@@ -54,6 +59,8 @@ class Window:
             self.handle_events(pg.event.get())
 
             self.menu.update()
+            self.input_box.update()
+            self.link.update()
             
             pg.draw.rect(screen, "black", pg.Rect(5, 12, 375, 100), border_radius=5)
             pg.draw.rect(
@@ -84,10 +91,10 @@ class Window:
                     pg.quit()
                     sys.exit()
                 self.menu.handle_event(event)
-                # self.input_box.handle_event(event)
+                self.input_box.handle_event(event)
         else:
             self.menu.handle_event(None)
-            # self.input_box.handle_event(None)
+            self.input_box.handle_event(None)
 
 
 def main():
