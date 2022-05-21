@@ -9,12 +9,12 @@ from menu import Menu
 
 class Window:
     def __init__(self):
-        
+
         self.menu = Menu()
         self.menu.add_menu_item("Fourth thing")
-        
+
         self.input_box = InputBox()
-        
+
         self.link = Link("Open google", "www.google.com", center=(150, 600))
 
         self.r_slider = Slider(
@@ -61,7 +61,7 @@ class Window:
             self.menu.update()
             self.input_box.update()
             self.link.update()
-            
+
             pg.draw.rect(screen, "black", pg.Rect(5, 12, 375, 100), border_radius=5)
             pg.draw.rect(
                 screen, "white", pg.Rect(5, 12, 375, 100), width=2, border_radius=5
