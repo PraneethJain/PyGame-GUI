@@ -18,7 +18,7 @@ class Slider:
         show_value=False,
         show_label=False,
         label_text: str = "Placeholder",
-        font=pg.font.Font("fonts/Roboto-Black.ttf", 16),
+        font=pg.font.SysFont("verdana", 16),
         font_color=(255, 255, 255),
     ) -> None:
         self.width = width

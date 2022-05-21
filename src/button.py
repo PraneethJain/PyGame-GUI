@@ -6,7 +6,7 @@ class Button:
         self,
         text: str,
         center: tuple[int, int] = (WIDTH // 2, HEIGHT // 2),
-        font: pg.font.Font = pg.font.Font("fonts/Roboto-Black.ttf", 32),
+        font: pg.font.Font = pg.font.SysFont("verdana", 32),
         color="lightgray",
         hover_background="black",
     ) -> None:
@@ -15,7 +15,7 @@ class Button:
         Args:
             text : Text to show on button.
             center : Coordinates of center of the button. Defaults to center of screen).
-            font : Font for the text on the button. Defaults to pg.font.Font("fonts/Roboto-Black.ttf", 32).
+            font : Font for the text on the button. Defaults to pg.font.SysFont("verdana", 32).
             color : Color of the text on the button. Defaults to light gray.
         """
         self.text = text

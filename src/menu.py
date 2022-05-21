@@ -8,7 +8,7 @@ class Menu:
     def __init__(
         self,
         menu_items: list[str] = ["First thing", "Second Thing", "Third Thing"],
-        font=pg.font.Font("fonts/Roboto-Black.ttf", 20),
+        font=pg.font.SysFont("verdana", 20),
         color="white",
         gap=50,
         topleft=(50, 250),

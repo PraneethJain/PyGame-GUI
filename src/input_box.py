@@ -8,7 +8,7 @@ class InputBox:
         width=200,
         height=50,
         text="",
-        font=pg.font.Font("fonts/Roboto-Black.ttf", 20),
+        font=pg.font.SysFont("verdana", 20),
         inactive_color="lightskyblue3",
         active_color="dodgerblue2",
         cursor_color="white",

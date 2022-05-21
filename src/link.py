@@ -8,8 +8,8 @@ class Link:
         text,
         link,
         center=(WIDTH / 2, HEIGHT / 2),
-        font=pg.font.Font("fonts/Roboto-Black.ttf", 32),
-        highlighted_font=pg.font.Font("fonts/Roboto-Black.ttf", 32),
+        font=pg.font.SysFont("verdana", 32),
+        highlighted_font=pg.font.SysFont("verdana", 32),
         color="white",
         highlight_color="lightblue",
     ):
