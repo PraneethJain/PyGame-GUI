@@ -4,16 +4,18 @@ from button import Button
 from link import Link
 from slider import Slider
 from input_box import InputBox
+from menu import Menu
 
 
 class Window:
     def __init__(self):
-
-        self.input_box = InputBox()
+        
+        self.menu = Menu()
 
         self.r_slider = Slider(
             center=(180, 30),
             max=255,
+            start_value=128,
             color="white",
             filled_color="red",
             show_value=True,
@@ -23,6 +25,7 @@ class Window:
         self.g_slider = Slider(
             center=(180, 60),
             max=255,
+            start_value=128,
             color="white",
             filled_color="green",
             show_value=True,
@@ -32,6 +35,7 @@ class Window:
         self.b_slider = Slider(
             center=(180, 90),
             max=255,
+            start_value=128,
             color="white",
             filled_color="blue",
             show_value=True,
@@ -49,8 +53,8 @@ class Window:
             screen.fill((self.r, self.g, self.b))
             self.handle_events(pg.event.get())
 
-            self.input_box.update()
-
+            self.menu.update()
+            
             pg.draw.rect(screen, "black", pg.Rect(5, 12, 375, 100), border_radius=5)
             pg.draw.rect(
                 screen, "white", pg.Rect(5, 12, 375, 100), width=2, border_radius=5
@@ -79,10 +83,11 @@ class Window:
                 if event.type == pg.QUIT:
                     pg.quit()
                     sys.exit()
-
-                self.input_box.handle_event(event)
+                self.menu.handle_event(event)
+                # self.input_box.handle_event(event)
         else:
-            self.input_box.handle_event(None)
+            self.menu.handle_event(None)
+            # self.input_box.handle_event(None)
 
 
 def main():
