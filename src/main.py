@@ -1,11 +1,5 @@
 import sys
-import pygame as pg
-from button import Button
-from link import Link
-from slider import Slider
-from input_box import InputBox
-from menu import Menu
-
+from pygamesimplegui import pg, Button, Link, Slider, InputBox, Menu
 
 class Window:
     def __init__(self):
