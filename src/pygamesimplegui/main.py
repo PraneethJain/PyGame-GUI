@@ -1,6 +1,5 @@
 import sys
 import pygame as pg
-pg.init()
 from button import Button
 from link import Link
 from slider import Slider
