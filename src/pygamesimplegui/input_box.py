@@ -32,14 +32,12 @@ class InputBox:
         self.cursor_rect = self.cursor_image.get_rect(center=self.text_rect.midright)
 
     def handle_event(self, event):
-        if event is not None and event.type == pg.MOUSEBUTTONDOWN:
+        if event.type == pg.MOUSEBUTTONDOWN:
             if self.rect.collidepoint(pg.mouse.get_pos()):
                 self.active = not self.active
 
             else:
                 self.active = False
-
-        self.color = self.active_color if self.active else self.inactive_color
         if self.active:
             if event is not None:
                 if event.type == pg.KEYDOWN:
@@ -52,10 +50,11 @@ class InputBox:
                         self.text += event.unicode
                 if event.type == pg.KEYUP:
                     self.pressed = False
-            # if self.pressed:
-            #     self.counter += 1
-            # else:
-            #     self.counter = 0
+
+    def update_text(self):
+        self.color = self.active_color if self.active else self.inactive_color
+        
+        if self.active:
 
             self.counter = self.counter + 1 if self.pressed else 0
 
@@ -76,4 +75,5 @@ class InputBox:
             screen.blit(self.cursor_image, self.cursor_rect.topleft)
 
     def update(self, screen):
+        self.update_text()
         self.draw(screen)

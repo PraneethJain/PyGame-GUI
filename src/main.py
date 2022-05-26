@@ -88,8 +88,6 @@ class Window:
                     sys.exit()
                 self.menu.handle_event(event)
                 self.input_box.handle_event(event)
-        else:
-            self.input_box.handle_event(None)
 
 
 def main():
