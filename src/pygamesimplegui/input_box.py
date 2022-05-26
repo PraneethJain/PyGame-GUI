@@ -53,7 +53,7 @@ class InputBox:
 
     def update_text(self):
         self.color = self.active_color if self.active else self.inactive_color
-        
+
         if self.active:
 
             self.counter = self.counter + 1 if self.pressed else 0

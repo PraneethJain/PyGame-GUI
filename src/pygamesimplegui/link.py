@@ -1,6 +1,7 @@
 import webbrowser
 import pygame as pg
 
+
 class Link:
     def __init__(
         self,

@@ -1,9 +1,10 @@
 import sys
 from pygamesimplegui import pg, Button, Link, Slider, InputBox, Menu
 
+
 class Window:
     def __init__(self):
-        
+
         self.screen = pg.display.set_mode((1280, 720))
         self.center = self.screen.get_rect().center
         self.menu = Menu()
@@ -58,7 +59,9 @@ class Window:
             self.input_box.update(self.screen)
             self.link.update(self.screen)
 
-            pg.draw.rect(self.screen, "black", pg.Rect(5, 12, 375, 100), border_radius=5)
+            pg.draw.rect(
+                self.screen, "black", pg.Rect(5, 12, 375, 100), border_radius=5
+            )
             pg.draw.rect(
                 self.screen, "white", pg.Rect(5, 12, 375, 100), width=2, border_radius=5
             )
