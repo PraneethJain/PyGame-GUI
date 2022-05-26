@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pygamesimplegui',
-    version='0.0.1',
+    version='0.0.2',
     license='MIT',
     author="Praneeth Jain",
     author_email='praneethjain005@gmail.com',
