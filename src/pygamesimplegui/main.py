@@ -1,5 +1,6 @@
 import sys
-from settings import *
+import pygame as pg
+pg.init()
 from button import Button
 from link import Link
 from slider import Slider
@@ -9,11 +10,13 @@ from menu import Menu
 
 class Window:
     def __init__(self):
-
+        
+        self.screen = pg.display.set_mode((1280, 720))
+        self.center = self.screen.get_rect().center
         self.menu = Menu()
         self.menu.add_menu_item("Fourth thing")
 
-        self.input_box = InputBox()
+        self.input_box = InputBox(center=self.center)
 
         self.link = Link("Open google", "www.google.com", center=(150, 600))
 
@@ -55,27 +58,27 @@ class Window:
 
     def run(self):
         while True:
-            screen.fill((self.r, self.g, self.b))
+            self.screen.fill((self.r, self.g, self.b))
             self.handle_events(pg.event.get())
 
-            self.menu.update()
-            self.input_box.update()
-            self.link.update()
+            self.menu.update(self.screen)
+            self.input_box.update(self.screen)
+            self.link.update(self.screen)
 
-            pg.draw.rect(screen, "black", pg.Rect(5, 12, 375, 100), border_radius=5)
+            pg.draw.rect(self.screen, "black", pg.Rect(5, 12, 375, 100), border_radius=5)
             pg.draw.rect(
-                screen, "white", pg.Rect(5, 12, 375, 100), width=2, border_radius=5
+                self.screen, "white", pg.Rect(5, 12, 375, 100), width=2, border_radius=5
             )
 
-            self.r_slider.update()
-            self.g_slider.update()
-            self.b_slider.update()
+            self.r_slider.update(self.screen)
+            self.g_slider.update(self.screen)
+            self.b_slider.update(self.screen)
 
             self.r = self.r_slider.value
             self.g = self.g_slider.value
             self.b = self.b_slider.value
 
-            self.reset_button.update()
+            self.reset_button.update(self.screen)
 
             if self.reset_button.unpressed:
                 self.r_slider.reset()

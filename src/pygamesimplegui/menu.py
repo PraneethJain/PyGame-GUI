@@ -1,4 +1,4 @@
-from .settings import *
+import pygame as pg
 
 
 class Menu:
@@ -50,7 +50,7 @@ class Menu:
             )
         )
 
-    def draw(self):
+    def draw(self, screen):
         screen.blit(self.selected_image, self.selected_image_rect)
         for i in range(self.length):
             screen.blit(self.menu_item_images[i], self.menu_item_rects[i])
@@ -68,5 +68,5 @@ class Menu:
                         )
                     )
 
-    def update(self):
-        self.draw()
+    def update(self, screen):
+        self.draw(screen)

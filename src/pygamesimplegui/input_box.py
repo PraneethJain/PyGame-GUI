@@ -1,10 +1,10 @@
-from .settings import *
+import pygame as pg
 
 
 class InputBox:
     def __init__(
         self,
-        center=(WIDTH / 2, HEIGHT / 2),
+        center,
         width=200,
         height=50,
         text="",
@@ -69,11 +69,11 @@ class InputBox:
                 center=self.text_rect.midright
             )
 
-    def draw(self):
+    def draw(self, screen):
         screen.blit(self.text_image, self.text_rect.topleft)
         pg.draw.rect(screen, self.color, self.rect, width=2, border_radius=5)
         if self.active:
             screen.blit(self.cursor_image, self.cursor_rect.topleft)
 
-    def update(self):
-        self.draw()
+    def update(self, screen):
+        self.draw(screen)

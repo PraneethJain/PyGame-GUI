@@ -1,11 +1,11 @@
-from .settings import *
+import pygame as pg
 
 
 class Button:
     def __init__(
         self,
         text: str,
-        center: tuple[int, int] = (WIDTH // 2, HEIGHT // 2),
+        center: tuple[int, int],
         font: pg.font.Font = pg.font.SysFont("verdana", 32),
         color="lightgray",
         hover_background="black",
@@ -30,7 +30,7 @@ class Button:
         self.pressed = False
         self.unpressed = False
 
-    def hover(self) -> None:
+    def hover(self, screen) -> None:
         """Handles the mouse hovering over the button"""
         if self.rect.collidepoint(pg.mouse.get_pos()):
             self.hovering = True
@@ -47,11 +47,11 @@ class Button:
             self.pressed = False
             self.unpressed = False
 
-    def draw(self) -> None:
+    def draw(self, screen) -> None:
         """Draws the text of the button"""
         screen.blit(self.image, self.image_rect.topleft)
 
-    def update(self) -> None:
+    def update(self, screen) -> None:
         """Update the button"""
-        self.hover()
-        self.draw()
+        self.hover(screen)
+        self.draw(screen)

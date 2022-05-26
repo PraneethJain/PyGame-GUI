@@ -1,13 +1,12 @@
-from .settings import *
 import webbrowser
-
+import pygame as pg
 
 class Link:
     def __init__(
         self,
         text,
         link,
-        center=(WIDTH / 2, HEIGHT / 2),
+        center,
         font=pg.font.SysFont("verdana", 32),
         highlighted_font=pg.font.SysFont("verdana", 32),
         color="white",
@@ -32,7 +31,7 @@ class Link:
         self.pressed = False
         self.unpressed = False
 
-    def draw(self):
+    def draw(self, screen):
         if self.rect.collidepoint(pg.mouse.get_pos()):
             self.hovering = True
             screen.blit(self.highlighted_image, self.rect.topleft)
@@ -54,7 +53,7 @@ class Link:
             self.pressed = False
             self.hovering = False
 
-    def update(self):
-        self.draw()
+    def update(self, screen):
+        self.draw(screen)
         if self.unpressed:
             webbrowser.open(self.link)

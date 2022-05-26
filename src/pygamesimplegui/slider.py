@@ -1,4 +1,4 @@
-from .settings import *
+import pygame as pg
 
 
 class Slider:
@@ -7,7 +7,7 @@ class Slider:
 
     def __init__(
         self,
-        center=(WIDTH / 2, HEIGHT / 2),
+        center,
         min=0,
         max=100,
         start_value=None,
@@ -66,7 +66,7 @@ class Slider:
                 midright=(self.rect.left - 20, self.rect.centery)
             )
 
-    def draw(self):
+    def draw(self, screen):
         screen.blit(self.image, self.rect.topleft)
         screen.blit(self.filled_image, self.filled_rect.topleft)
         pg.draw.circle(
@@ -102,9 +102,9 @@ class Slider:
             self.pressed = False
             Slider.busy = False
 
-    def update(self):
+    def update(self, screen):
         self.update_value()
-        self.draw()
+        self.draw(screen)
 
     def set_value(self, value=None):
         if value is not None:
