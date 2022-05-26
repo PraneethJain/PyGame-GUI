@@ -56,7 +56,7 @@ class Menu:
             screen.blit(self.menu_item_images[i], self.menu_item_rects[i])
 
     def handle_event(self, event):
-        if event is not None and event.type == pg.MOUSEBUTTONDOWN:
+        if event.type == pg.MOUSEBUTTONDOWN:
             x, y = pg.mouse.get_pos()
             for i, rect in enumerate(self.menu_item_rects):
                 if rect.collidepoint(x, y):
